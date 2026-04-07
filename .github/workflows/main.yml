@@ -5,6 +5,9 @@ on:
   push:
     branches: ["main"]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   build:
     runs-on: windows-latest
@@ -82,8 +85,26 @@ jobs:
         working-directory: ${{ env.SPFX_DIR }}
         run: npx gulp package-solution --ship
 
+      - name: List package outputs
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Continue"
+          Write-Host "SPFX_DIR=$env:SPFX_DIR"
+          Write-Host ""
+          Write-Host "sharepoint/solution:"
+          if (Test-Path -LiteralPath (Join-Path $env:SPFX_DIR "sharepoint/solution")) {
+            Get-ChildItem -Force (Join-Path $env:SPFX_DIR "sharepoint/solution") | Format-Table Name,Length,LastWriteTime
+          } else {
+            Write-Host "missing"
+          }
+          Write-Host ""
+          Write-Host "All sppkg files:"
+          Get-ChildItem -Recurse -Force -Filter *.sppkg | Select-Object FullName,Length | Format-Table -AutoSize
+
       - name: Upload sppkg artifact
         uses: actions/upload-artifact@v4
         with:
           name: closeout-matrix-sppkg
-          path: ${{ env.SPFX_DIR }}/sharepoint/solution/*.sppkg
+          path: |
+            ${{ env.SPFX_DIR }}/sharepoint/solution/*.sppkg
+            **/*.sppkg
