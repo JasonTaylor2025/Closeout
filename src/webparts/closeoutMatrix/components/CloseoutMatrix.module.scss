@@ -35,7 +35,7 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  align-items: end;
+  align-items: flex-end;
   flex-wrap: wrap;
 }
 
@@ -126,7 +126,7 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  align-items: start;
+  align-items: flex-start;
   margin-bottom: 12px;
   flex-wrap: wrap;
 }
@@ -373,7 +373,7 @@
   .closeoutMatrixRoot :global(.hero),
   .closeoutMatrixRoot :global(.card-header) {
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
   }
 }
 
@@ -395,4 +395,3 @@
     white-space: normal;
   }
 }
-
