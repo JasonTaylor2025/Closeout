@@ -17,20 +17,53 @@ jobs:
         with:
           node-version: "18"
 
+      - name: Locate SPFx project folder
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          function Set-SpfxDir([string]$dir) {
+            if (-not (Test-Path -LiteralPath $dir)) { throw "SPFx directory not found: $dir" }
+            "SPFX_DIR=$dir" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            Write-Host "Using SPFX_DIR=$dir"
+          }
+
+          if (Test-Path -LiteralPath "spfx-closeout-matrix/package.json") {
+            Set-SpfxDir "spfx-closeout-matrix"
+            exit 0
+          }
+
+          if ((Test-Path -LiteralPath "package.json") -and (Test-Path -LiteralPath "config/package-solution.json")) {
+            Set-SpfxDir "."
+            exit 0
+          }
+
+          $pkg = Get-ChildItem -Recurse -File -Filter "package-solution.json" -ErrorAction Stop | Select-Object -First 1
+          if (-not $pkg) { throw "Could not find config/package-solution.json anywhere in the repo." }
+
+          $configDir = Split-Path -Parent $pkg.FullName
+          $projectDir = Split-Path -Parent $configDir
+
+          $rel = Resolve-Path -LiteralPath $projectDir | ForEach-Object {
+            $_.Path.Substring((Resolve-Path -LiteralPath ".").Path.Length).TrimStart('\')
+          }
+          if (-not $rel) { $rel = "." }
+          Set-SpfxDir $rel
+
       - name: Install dependencies
-        working-directory: spfx-closeout-matrix
+        working-directory: ${{ env.SPFX_DIR }}
         run: npm install --no-audit --no-fund
 
       - name: Bundle (ship)
-        working-directory: spfx-closeout-matrix
+        working-directory: ${{ env.SPFX_DIR }}
         run: npx gulp bundle --ship
 
       - name: Package solution (ship)
-        working-directory: spfx-closeout-matrix
+        working-directory: ${{ env.SPFX_DIR }}
         run: npx gulp package-solution --ship
 
       - name: Upload sppkg artifact
         uses: actions/upload-artifact@v4
         with:
           name: closeout-matrix-sppkg
-          path: spfx-closeout-matrix/sharepoint/solution/*.sppkg
+          path: ${{ env.SPFX_DIR }}/sharepoint/solution/*.sppkg
