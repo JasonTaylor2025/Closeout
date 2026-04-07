@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "closeout-matrix-client-side-solution",
+    "id": "7f41e1a6-8ed4-4ef4-9a6d-98b5b9b3f8f2",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": false,
+    "features": [
+      {
+        "title": "Closeout Matrix",
+        "description": "Deploys the Closeout Matrix web part.",
+        "id": "a5c67a28-4dcb-4a63-8e25-0d79f5d2a07c",
+        "version": "1.0.0.0",
+        "componentIds": [
+          "d9a56548-6c7f-4fc3-9c32-7f5e2e3c71d8"
+        ]
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "sharepoint/solution/closeout-matrix.sppkg"
+  }
+}
+

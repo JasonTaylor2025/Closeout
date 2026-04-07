@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/sass.schema.json",
+  "sassConfig": {
+    "includePaths": [
+      "node_modules/@microsoft/sp-office-ui-fabric-core/dist/sass"
+    ]
+  }
+}
+
