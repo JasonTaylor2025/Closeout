@@ -1,0 +1,39 @@
+name: Build SPFx Package
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: spfx-closeout-matrix/package-lock.json
+
+      - name: Install dependencies
+        working-directory: spfx-closeout-matrix
+        run: npm ci
+
+      - name: Bundle (ship)
+        working-directory: spfx-closeout-matrix
+        run: npx gulp bundle --ship
+
+      - name: Package solution (ship)
+        working-directory: spfx-closeout-matrix
+        run: npx gulp package-solution --ship
+
+      - name: Upload sppkg artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: closeout-matrix-sppkg
+          path: spfx-closeout-matrix/sharepoint/solution/*.sppkg
+
