@@ -50,6 +50,25 @@ jobs:
           if (-not $rel) { $rel = "." }
           Set-SpfxDir $rel
 
+      - name: Debug environment
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Continue"
+          Write-Host "Repo root:"
+          Get-Location
+          Write-Host ""
+          Write-Host "SPFX_DIR=$env:SPFX_DIR"
+          Write-Host ""
+          Write-Host "Top-level:"
+          Get-ChildItem -Force | Select-Object Name
+          Write-Host ""
+          Write-Host "SPFx folder listing:"
+          if (Test-Path -LiteralPath $env:SPFX_DIR) { Get-ChildItem -Force $env:SPFX_DIR | Select-Object Name }
+          Write-Host ""
+          Write-Host "Node/npm versions:"
+          node --version
+          npm --version
+
       - name: Install dependencies
         working-directory: ${{ env.SPFX_DIR }}
         run: npm install --no-audit --no-fund
