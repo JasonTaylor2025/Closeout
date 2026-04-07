@@ -1,0 +1,398 @@
+.closeoutMatrixRoot {
+  --card: rgba(255, 251, 243, 0.92);
+  --card-strong: #fffdf8;
+  --ink: #22313f;
+  --muted: #5f6f7f;
+  --line: #d3c8b8;
+  --accent: #9c4f2f;
+  --accent-dark: #71361f;
+  --accent-soft: #e8c9b8;
+  --success: #2d7559;
+  --warning: #c28b2c;
+  --danger: #b44a3b;
+  --shadow: 0 18px 40px rgba(56, 45, 33, 0.12);
+  --radius: 22px;
+
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--ink);
+}
+
+.closeoutMatrixRoot :global(.page-shell) {
+  width: 100%;
+  margin: 0;
+}
+
+.closeoutMatrixRoot :global(.hero),
+.closeoutMatrixRoot :global(.card) {
+  border: 1px solid rgba(211, 200, 184, 0.8);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.closeoutMatrixRoot :global(.hero) {
+  padding: 20px;
+  border-radius: 28px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.closeoutMatrixRoot :global(.eyebrow),
+.closeoutMatrixRoot :global(.section-kicker) {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.closeoutMatrixRoot :global(.hero h1),
+.closeoutMatrixRoot :global(.card h2) {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.closeoutMatrixRoot :global(.hero h1) {
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+  max-width: 18ch;
+}
+
+.closeoutMatrixRoot :global(.hero-copy),
+.closeoutMatrixRoot :global(.section-note) {
+  margin: 14px 0 0;
+  max-width: 72ch;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.closeoutMatrixRoot :global(.hero-actions),
+.closeoutMatrixRoot :global(.table-actions) {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.closeoutMatrixRoot :global(.sync-badge) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.88);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.closeoutMatrixRoot :global(.sync-loading),
+.closeoutMatrixRoot :global(.sync-saving) {
+  background: #f7ecda;
+  color: #8a5a10;
+}
+
+.closeoutMatrixRoot :global(.sync-synced) {
+  background: #dcecdf;
+  color: var(--success);
+}
+
+.closeoutMatrixRoot :global(.sync-error) {
+  background: #f4d8d3;
+  color: var(--danger);
+}
+
+.closeoutMatrixRoot :global(.sync-idle) {
+  background: rgba(255, 253, 248, 0.88);
+  color: var(--ink);
+}
+
+.closeoutMatrixRoot :global(.matrix-app) {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.closeoutMatrixRoot :global(.card) {
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.closeoutMatrixRoot :global(.card-header) {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.closeoutMatrixRoot :global(.stamp) {
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: var(--card-strong);
+  border: 1px solid var(--line);
+  min-width: 160px;
+}
+
+.closeoutMatrixRoot :global(.stamp span),
+.closeoutMatrixRoot :global(.summary-stat span),
+.closeoutMatrixRoot :global(label span) {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.closeoutMatrixRoot :global(.stamp strong),
+.closeoutMatrixRoot :global(.summary-stat strong) {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 1rem;
+}
+
+.closeoutMatrixRoot :global(.project-grid),
+.closeoutMatrixRoot :global(.owner-grid),
+.closeoutMatrixRoot :global(.controls-grid) {
+  display: grid;
+  gap: 12px;
+}
+
+.closeoutMatrixRoot :global(.project-grid) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.closeoutMatrixRoot :global(.owner-grid),
+.closeoutMatrixRoot :global(.controls-grid) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.closeoutMatrixRoot :global(.span-2) {
+  grid-column: span 2;
+}
+
+.closeoutMatrixRoot :global(label input),
+.closeoutMatrixRoot :global(label select),
+.closeoutMatrixRoot :global(td input[type="text"]),
+.closeoutMatrixRoot :global(td input[type="date"]),
+.closeoutMatrixRoot :global(textarea) {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.76);
+  border-radius: 14px;
+  padding: 10px 11px;
+  color: var(--ink);
+  font: inherit;
+}
+
+.closeoutMatrixRoot :global(textarea) {
+  min-width: 180px;
+  resize: vertical;
+}
+
+.closeoutMatrixRoot :global(input:focus),
+.closeoutMatrixRoot :global(textarea:focus),
+.closeoutMatrixRoot :global(select:focus) {
+  outline: 2px solid rgba(156, 79, 47, 0.25);
+  border-color: var(--accent);
+}
+
+.closeoutMatrixRoot :global(.summary-card) {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.closeoutMatrixRoot :global(.summary-stat) {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--card-strong);
+  padding: 14px;
+}
+
+.closeoutMatrixRoot :global(.summary-stat strong) {
+  font-size: clamp(1.2rem, 1.8vw, 2rem);
+}
+
+.closeoutMatrixRoot :global(.button) {
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff8f2;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease;
+  text-decoration: none;
+}
+
+.closeoutMatrixRoot :global(.button:hover),
+.closeoutMatrixRoot :global(.icon-button:hover) {
+  transform: translateY(-1px);
+}
+
+.closeoutMatrixRoot :global(.button-secondary) {
+  background: #ece3d5;
+  color: var(--ink);
+}
+
+.closeoutMatrixRoot :global(.button-ghost) {
+  background: transparent;
+  color: var(--accent-dark);
+  border: 1px solid var(--accent-soft);
+}
+
+.closeoutMatrixRoot :global(.file-button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeoutMatrixRoot :global(.table-wrap) {
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--card-strong);
+}
+
+.closeoutMatrixRoot :global(table) {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1500px;
+}
+
+.closeoutMatrixRoot :global(th),
+.closeoutMatrixRoot :global(td) {
+  border-bottom: 1px solid #e6ddcf;
+  border-right: 1px solid #efe8dc;
+  vertical-align: top;
+}
+
+.closeoutMatrixRoot :global(th) {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 12px 8px;
+  background: #f2e4d6;
+  color: var(--ink);
+  text-align: left;
+  font-size: 0.76rem;
+  line-height: 1.25;
+  min-width: 82px;
+}
+
+.closeoutMatrixRoot :global(td) {
+  padding: 8px;
+}
+
+.closeoutMatrixRoot :global(tbody tr.overdue-row) {
+  background: rgba(180, 74, 59, 0.06);
+}
+
+.closeoutMatrixRoot :global(tbody tr.completed-row) {
+  background: rgba(45, 117, 89, 0.05);
+}
+
+.closeoutMatrixRoot :global(td input[type="checkbox"]) {
+  display: block;
+  width: 22px;
+  height: 22px;
+  margin: 10px auto;
+  accent-color: var(--success);
+}
+
+.closeoutMatrixRoot :global(.progress-cell) {
+  min-width: 88px;
+}
+
+.closeoutMatrixRoot :global(.progress-bar) {
+  height: 10px;
+  border-radius: 999px;
+  background: #eadfce;
+  overflow: hidden;
+}
+
+.closeoutMatrixRoot :global(.progress-bar span) {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--warning), var(--success));
+}
+
+.closeoutMatrixRoot :global(.progress-cell strong) {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.closeoutMatrixRoot :global(.status-pill) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #efe4d7;
+  color: var(--accent-dark);
+}
+
+.closeoutMatrixRoot :global(.status-pill.status-overdue) {
+  background: #f4d8d3;
+  color: var(--danger);
+}
+
+.closeoutMatrixRoot :global(.status-pill.status-completed) {
+  background: #dcecdf;
+  color: var(--success);
+}
+
+.closeoutMatrixRoot :global(.icon-button) {
+  border: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f8e2d7;
+  color: var(--accent-dark);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .closeoutMatrixRoot :global(.project-grid),
+  .closeoutMatrixRoot :global(.owner-grid),
+  .closeoutMatrixRoot :global(.controls-grid),
+  .closeoutMatrixRoot :global(.summary-card) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .closeoutMatrixRoot :global(.hero),
+  .closeoutMatrixRoot :global(.card-header) {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .closeoutMatrixRoot :global(.project-grid),
+  .closeoutMatrixRoot :global(.owner-grid),
+  .closeoutMatrixRoot :global(.controls-grid),
+  .closeoutMatrixRoot :global(.summary-card) {
+    grid-template-columns: 1fr;
+  }
+
+  .closeoutMatrixRoot :global(.span-2) {
+    grid-column: span 1;
+  }
+
+  .closeoutMatrixRoot :global(.sync-badge) {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+  }
+}
+

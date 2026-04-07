@@ -1,0 +1,4 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/heft/sass.schema.json",
+  "quietDeps": true
+}
